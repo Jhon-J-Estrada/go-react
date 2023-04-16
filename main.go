@@ -1,6 +1,7 @@
 // https://www.youtube.com/watch?v=E1yiCT2Rdj8
 // https://www.youtube.com/watch?v=zlrnwGZMBbU
 
+//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
 
 //https://docs.gofiber.io/
 
@@ -11,9 +12,17 @@ import(
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"os"
 )
 
 func main() {
+
+	port := os.Getenv("PORT")
+
+	if port ==""{
+		port = "3000"
+	}
+
 	app:= fiber.New()
 
 	app.Use(cors.New())
@@ -25,6 +34,6 @@ func main() {
 			"data":"User desde el baken",
 		})
 	})
-	app.Listen(":3000")
+	app.Listen(":"+port)
 	fmt.Println("Server on port 3000")
 }
